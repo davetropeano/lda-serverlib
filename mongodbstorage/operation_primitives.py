@@ -18,6 +18,8 @@ def get_timestamp():
 
 MONGO_CLIENT = MongoClient(os.environ['MONGODB_DB_HOST'], int(os.environ['MONGODB_DB_PORT']), tz_aware=True)
 MONGO_DB = MONGO_CLIENT[os.environ['APP_NAME']]
+if 'MONGODB_DB_NAME' in os.environ:
+    MONGO_DB = MONGO_CLIENT[os.environ['MONGODB_DB_NAME']]
 if 'MONGODB_DB_USERNAME' in os.environ: 
     MONGO_DB.authenticate(os.environ['MONGODB_DB_USERNAME'], os.environ['MONGODB_DB_PASSWORD'])
 
