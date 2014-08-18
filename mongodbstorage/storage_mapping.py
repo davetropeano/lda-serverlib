@@ -203,6 +203,7 @@ def query_to_storage(json_query, public_hostname, path_url):
         return {'$query': mongo_query_part, '$orderby': {predicate: ascending}}
     match_array = []
     for subject, subject_map in json_query.iteritems():
+        subject = str(subject)
         if subject.startswith('_any'):
             match_predicates = {} # would it be more correct to put something like {'$where' : 'this[@id] == this["@graph.0.@id"]'} ??
         else:  
